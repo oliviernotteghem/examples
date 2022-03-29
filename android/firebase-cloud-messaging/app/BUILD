@@ -15,7 +15,7 @@ android_binary(
     custom_package = "com.example.myapplication",
     manifest = "src/main/AndroidManifest.xml",
     manifest_values = {
-        "minSdkVersion": "15",
+        "minSdkVersion": "21",
         "applicationId": "com.example.myapplication",
     },
     resource_files = glob(["src/main/res/**"]) + GOOGLE_SERVICES_XML,
@@ -25,5 +25,15 @@ android_binary(
         "@maven//:com_android_support_appcompat_v7",
         # activity_main layout uses contraints
         "@maven//:com_android_support_constraint_constraint_layout",
+        ":lib_repro",
     ],
+)
+
+aar_import(
+    name="lib_repro",
+    aar="lib-repro.aar",
+    deps = [
+       "@maven//:io_reactivex_rxjava2_rxjava",
+    ],
+    visibility=["//visibility:public"],
 )

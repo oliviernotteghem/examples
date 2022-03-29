@@ -1,7 +1,11 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Requires ANDROID_HOME set to the path of your Android SDK.
-android_sdk_repository(name = "androidsdk")
+android_sdk_repository(
+    name = "androidsdk",
+    api_level = 30,
+    build_tools_version = "30.0.2"
+)
 
 RULES_JVM_EXTERNAL_TAG = "2.9"
 
@@ -22,6 +26,7 @@ maven_install(
         "com.android.support:appcompat-v7:26.1.0",
         "com.android.support.constraint:constraint-layout:1.0.2",
         "com.google.code.gson:gson:2.8.2",
+        "io.reactivex.rxjava2:rxjava:jar:2.2.8",
     ],
     fetch_sources = True,
     # See https://github.com/bazelbuild/rules_jvm_external/#repository-aliases
